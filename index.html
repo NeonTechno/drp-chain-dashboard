@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DRP Chain Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">DRP<span class="logo-accent">CHAIN</span></span>
+    </div>
+    <div class="header-center">
+      <span class="chain-id">chain-id: <span id="chainId">drp-testnet-1</span></span>
+      <span class="separator">|</span>
+      <span class="network-status"><span class="pulse"></span> <span id="netStatus">ONLINE</span></span>
+    </div>
+    <div class="header-right">
+      <span class="clock" id="clock"></span>
+      <span class="block-time">avg block: <span id="avgBlockTime">6.2s</span></span>
+    </div>
+  </header>
+
+  <main class="grid">
+
+    <!-- TOP ROW: KEY METRICS -->
+    <section class="card card--wide metrics-row">
+      <div class="metric">
+        <div class="metric__label">LATEST BLOCK</div>
+        <div class="metric__value" id="latestBlock">0</div>
+        <div class="metric__sub" id="blockHash">0x0000…0000</div>
+      </div>
+      <div class="metric">
+        <div class="metric__label">VALIDATORS</div>
+        <div class="metric__value" id="validatorCount">21</div>
+        <div class="metric__sub">active / 21 total</div>
+      </div>
+      <div class="metric">
+        <div class="metric__label">TXs TODAY</div>
+        <div class="metric__value" id="txsToday">0</div>
+        <div class="metric__sub">+<span id="txDelta">0</span> last block</div>
+      </div>
+      <div class="metric">
+        <div class="metric__label">BONDED $RIGHTS</div>
+        <div class="metric__value" id="bondedRights">0</div>
+        <div class="metric__sub"><span id="bondedPct">0</span>% of supply</div>
+      </div>
+      <div class="metric">
+        <div class="metric__label">$DeRi PRICE</div>
+        <div class="metric__value" id="deriPrice">$0.000</div>
+        <div class="metric__sub" id="deriChange">+0.00%</div>
+      </div>
+      <div class="metric">
+        <div class="metric__label">$RIGHTS PRICE</div>
+        <div class="metric__value" id="rightsPrice">$0.000</div>
+        <div class="metric__sub" id="rightsChange">+0.00%</div>
+      </div>
+    </section>
+
+    <!-- BLOCK FEED -->
+    <section class="card card--blocks">
+      <div class="card__header">
+        <span class="card__title">⬡ BLOCK FEED</span>
+        <span class="badge badge--live">LIVE</span>
+      </div>
+      <div class="block-feed" id="blockFeed"></div>
+    </section>
+
+    <!-- NODE HEALTH -->
+    <section class="card card--nodes">
+      <div class="card__header">
+        <span class="card__title">◈ NODE HEALTH</span>
+        <span id="nodeOnlineCount" class="badge badge--green">0/0</span>
+      </div>
+      <div class="node-list" id="nodeList"></div>
+    </section>
+
+    <!-- MEMPOOL -->
+    <section class="card card--mempool">
+      <div class="card__header">
+        <span class="card__title">≋ MEMPOOL</span>
+        <span class="badge" id="mempoolSize">0 pending</span>
+      </div>
+      <div class="mempool-list" id="mempoolList"></div>
+    </section>
+
+    <!-- PROOF OF STATUS FEED -->
+    <section class="card card--pos">
+      <div class="card__header">
+        <span class="card__title">✦ PROOF OF STATUS</span>
+        <span class="badge badge--ai">AI-VERIFIED</span>
+      </div>
+      <div class="pos-feed" id="posFeed"></div>
+    </section>
+
+    <!-- TOKEN CHART (SVG sparkline) -->
+    <section class="card card--chart">
+      <div class="card__header">
+        <span class="card__title">◎ TOKEN ACTIVITY</span>
+        <div class="chart-tabs">
+          <button class="tab tab--active" onclick="switchTab('deri')">$DeRi</button>
+          <button class="tab" onclick="switchTab('rights')">$RIGHTS</button>
+        </div>
+      </div>
+      <canvas id="tokenChart" width="400" height="140"></canvas>
+      <div class="chart-legend">
+        <span id="chartLow"></span>
+        <span id="chartHigh"></span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>DRP Chain Dashboard v0.1.0 · Testnet</span>
+    <span>Built by <a href="https://github.com/NeonTechno" target="_blank">@NeonTechno</a> · Decentralized Rights Protocol</span>
+    <span>⬡ Cosmos SDK · C++ Core · AI-Verified</span>
+  </footer>
+
+  <script src="api-mock.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
